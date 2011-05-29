@@ -48,6 +48,7 @@
 #include <ftl/nand.h>
 
 #include <asm/system.h>
+#include <asm/cpu-single.h>
 #include <mach/system.h>
 
 static struct map_desc iphone_io_desc[] __initdata = {
