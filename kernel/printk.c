@@ -16,6 +16,38 @@
  *	01Mar01 Andrew Morton
  */
 
+#include <linux/init.h>
+#include <linux/device.h>
+#include <linux/sysdev.h>
+#include <linux/io.h>
+#include <linux/i2c.h>
+#include <linux/power_supply.h>
+#include <linux/pm.h>
+
+#include <mach/hardware.h>
+#include <asm/irq.h>
+#include <asm/mach-types.h>
+
+//#include <asm/mach/arch.h>
+//#include <asm/mach/map.h>
+#include <asm/mach/time.h>
+#include <asm/mach/irq.h>
+
+//#include "core.h"
+//#include "lcd.h"
+#include <mach/iphone-dma.h>
+#include <mach/gpio.h>
+#include <mach/iphone-i2c.h>
+#include <mach/usb.h>
+#include <mach/pmu.h>
+
+#include <linux/platform_device.h>
+
+#include <ftl/nand.h>
+
+#include <asm/system.h>
+#include <asm/cpu-single.h>
+#include <mach/system.h>
 #include <linux/kernel.h>
 #include <linux/mm.h>
 #include <linux/tty.h>
@@ -34,6 +66,14 @@
 #include <linux/syscalls.h>
 #include <linux/kexec.h>
 
+#include <mach/hardware.h>
+#include <asm/irq.h>
+#include <asm/mach-types.h>
+
+#include <asm/mach/arch.h>
+#include <asm/mach/map.h>
+#include <asm/mach/time.h>
+#include <asm/mach/irq.h>
 #include <asm/uaccess.h>
 
 /*
@@ -718,6 +758,8 @@ static inline void printk_delay(void)
 	}
 }
 
+extern int hax_draw_on_lcd(int val);
+
 asmlinkage int vprintk(const char *fmt, va_list args)
 {
 	int printed_len = 0;
@@ -764,6 +806,18 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 	/* Emit the output into the temporary buffer */
 	printed_len += vscnprintf(printk_buf + printed_len,
 				  sizeof(printk_buf) - printed_len, fmt, args);
+
+	//hax_draw_on_lcd(0xfc00000, 0xff00ff);
+	//__raw_writel(0x100000, IO_ADDRESS(0x3C800000));
+	//__raw_writel(0xff00ff, IO_ADDRESS(0xfc00000));
+	//__raw_writel(0xff00ff, IO_ADDRESS(0xfc00000));
+	static int fboffset = 0xFC00000;
+	const char* printk_buf_offset = printk_buf;
+	while(*printk_buf_offset != 0) {
+		int i=0;
+		hax_draw_on_lcd(*printk_buf_offset);
+		printk_buf_offset++;
+	}
 
 #ifdef	CONFIG_DEBUG_LL
 	printascii(printk_buf);

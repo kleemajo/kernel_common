@@ -35,7 +35,7 @@ static inline void arch_idle(void)
 
 static inline void arch_reset(char mode, const char* cmd)
 {
-	__raw_writel(0x100000, IO_ADDRESS(0x3E300000));
+	__raw_writel(0x100000, IO_ADDRESS(0x3C800000));
 }
 
 #endif

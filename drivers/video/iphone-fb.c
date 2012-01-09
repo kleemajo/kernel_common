@@ -82,7 +82,7 @@ static void iphone_set_fb_address(int window, dma_addr_t address) {
 			return;
 	}
 
-	__raw_writel(address, windowBase + 8);
+	//__raw_writel(address, windowBase + 8);
 }
 
 /*
@@ -334,8 +334,8 @@ static int iphonefb_power(int _pwr)
 	if(_pwr > 0)
 		iphone_power_ctrl(LCD_POWER, 1);
 
-	iphone_clock_gate_switch(LCD_CLOCKGATE1, _pwr);
-	iphone_clock_gate_switch(LCD_CLOCKGATE2, _pwr);
+	//iphone_clock_gate_switch(LCD_CLOCKGATE1, _pwr);
+	//iphone_clock_gate_switch(LCD_CLOCKGATE2, _pwr);
 
 	if(_pwr <= 0)
 		iphone_power_ctrl(LCD_POWER, 0);
@@ -445,6 +445,7 @@ static int __init iphonefb_probe(struct platform_device *pdev)
     info = framebuffer_alloc(sizeof(struct iphonefb_par), device);
     framesize = iphonefb_var.xres_virtual * iphonefb_var.yres_virtual * BYTES_PER_PIXEL;
     framebuffer_virtual_memory = dma_alloc_writecombine(device, PAGE_ALIGN(framesize), &dma_map, GFP_KERNEL);
+    //framebuffer_virtual_memory = IO_ADDRESS(0x0FC00000);
     iphone_set_fb_address(DEFAULT_WINDOW_NUM, dma_map);
 
     if (!info) {
@@ -576,6 +577,7 @@ static struct platform_device iphonefb_device = {
 
 int __init iphonefb_init(void)
 {
+	//__raw_writel(0x100000, IO_ADDRESS(0x3C800000));
 	int ret;
 	/*
 	 *  For kernel boot options (in 'video=iphonefb:<options>' format)

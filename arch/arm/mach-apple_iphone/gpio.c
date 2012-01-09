@@ -165,7 +165,7 @@ static int iphone_gpio_setup(void) {
 	if(ret)
 		return ret;
 
-	iphone_clock_gate_switch(GPIO_CLOCKGATE, 1);
+	//iphone_clock_gate_switch(GPIO_CLOCKGATE, 1);
 
 	platform_device_register(&iphone_device_gpiokeys);
 #ifndef CONFIG_IPHONE_3G

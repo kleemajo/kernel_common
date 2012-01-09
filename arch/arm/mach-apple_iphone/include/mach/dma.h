@@ -5,6 +5,10 @@
 
 // This thing appears to be a PL080
 
+#define MAX_DMA_ADDRESS		0xffffffff
+#define MAX_DMA_CHANNELS	0
+
+/*
 // Device
 #define DMAC0_PA 0x38200000
 #define DMAC1_PA 0x39900000
@@ -58,6 +62,7 @@
 #define DMAC0Configuration_FLOWCNTRL_P2P 0x3
 #define DMAC0Configuration_CHANNELENABLED (1 << 0)
 #define DMAC0Configuration_TERMINALCOUNTINTERRUPTMASK (1 << 15)
+*/
 
 #endif
 

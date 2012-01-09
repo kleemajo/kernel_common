@@ -939,8 +939,8 @@ int nand_setup(void)
 
 	LOG("nand: Probing flash controller...\n");
 
-	iphone_clock_gate_switch(NAND_CLOCK_GATE1, true);
-	iphone_clock_gate_switch(NAND_CLOCK_GATE2, true);
+	//iphone_clock_gate_switch(NAND_CLOCK_GATE1, true);
+	//iphone_clock_gate_switch(NAND_CLOCK_GATE2, true);
 
 	for(bank = 0; bank < NAND_NUM_BANKS; bank++) {
 		banksTable[bank] = bank;

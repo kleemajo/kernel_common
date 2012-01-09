@@ -5,15 +5,15 @@
 #include <mach/hardware.h>
 
 // Device
-#define GPIOIC IO_ADDRESS(0x39A00000)	/* probably a part of the system controller */
-#define GPIO IO_ADDRESS(0x3E400000)
+#define GPIOIC IO_ADDRESS(0x39700000)	/* probably a part of the system controller */
+#define GPIO IO_ADDRESS(0x3CF00000)
 
 // Registers
 #define GPIO_INTLEVEL 0x80
 #define GPIO_INTSTAT 0xA0
 #define GPIO_INTEN 0xC0
 #define GPIO_INTTYPE 0xE0
-#define GPIO_FSEL 0x320
+#define GPIO_FSEL 0x1E0
 
 #define GPIO_IO 0x320
 
@@ -35,9 +35,20 @@
 #define GPIO_DETECT2 0xE05
 #define GPIO_DETECT3 0xE06
 
-#define GPIO_BUTTONS_HOME_IPHONE 0x1600
-#define GPIO_BUTTONS_HOME_IPOD 0x1606
+//#define GPIO_BUTTONS_HOME_IPHONE 0x1600
+//#define GPIO_BUTTONS_HOME_IPOD 0x1606
 
+#define GPIO_BUTTONS_HOME 0xC01
+#define GPIO_BUTTONS_HOLD 0xC02
+#define GPIO_BUTTONS_VOLUP 0x902
+#define GPIO_BUTTONS_VOLDOWN 0xC00
+
+#define BUTTONS_HOME_IRQ 0x79
+#define BUTTONS_HOLD_IRQ 0x7A
+#define BUTTONS_VOLUP_IRQ 0x62
+#define BUTTONS_VOLDOWN_IRQ 0x78
+
+/*
 #ifdef CONFIG_IPODTOUCH_1G
 #define GPIO_BUTTONS_HOME GPIO_BUTTONS_HOME_IPOD
 #define GPIO_BUTTONS_HOME_IRQ 0x2E
@@ -59,6 +70,7 @@
 #define GPIO_BUTTONS_RINGERAB 0x1603
 #define GPIO_BUTTONS_RINGERAB_IRQ 0x2B
 #endif
+*/
 
 typedef struct GPIORegisters {
 	volatile uint32_t CON;

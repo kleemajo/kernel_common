@@ -10,7 +10,7 @@
 #define GET_BITS(x, start, length) ((((u32)(x)) << (32 - ((start) + (length)))) >> (32 - (length)))
 
 // Device
-#define CHIPID IO_ADDRESS(0x3E500000)
+#define CHIPID IO_ADDRESS(0x3D100000)
 
 // Registers
 #define SPICLOCKTYPE 0x4
@@ -21,6 +21,7 @@
 #define SPI0 IO_ADDRESS(0x3C300000)
 #define SPI1 IO_ADDRESS(0x3CE00000)
 #define SPI2 IO_ADDRESS(0x3D200000)
+//TODO: add SPI3 and SPI4
 
 // Registers
 
@@ -42,9 +43,9 @@
 #define CLOCK_SHIFT 12
 #define MAX_DIVIDER 0x3FF
 
-#define SPI0_CLOCKGATE 0x22
-#define SPI1_CLOCKGATE 0x2B
-#define SPI2_CLOCKGATE 0x2F
+#define SPI0_CLOCKGATE 0xE
+#define SPI1_CLOCKGATE 0xF
+#define SPI2_CLOCKGATE 0x10
 
 #define SPI0_IRQ 0x9
 #define SPI1_IRQ 0xA

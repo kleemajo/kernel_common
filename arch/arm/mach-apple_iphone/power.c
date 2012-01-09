@@ -24,7 +24,7 @@
 #include <mach/hardware.h>
 #include <mach/iphone-clock.h>
 
-#define POWER IO_ADDRESS(0x39A00000)	/* probably a part of the system controller */
+#define POWER IO_ADDRESS(0x39700000)	/* probably a part of the system controller */
 
 #define POWER_ONCTRL 0xC
 #define POWER_OFFCTRL 0x10
